@@ -1,5 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import { FirestoreService } from '../../services/firestore/firestore.service';
+import {Activity} from '../../models/Activity';
+
 
 @Component({
   selector: 'app-list-activity',
@@ -8,7 +10,7 @@ import { FirestoreService } from '../../services/firestore/firestore.service';
 })
 export class ListActivityComponent implements OnInit {
 
-  public activities = [];
+  public activities :Activity [];
 
   constructor(private firestoreService:FirestoreService) { }
 
@@ -18,10 +20,24 @@ export class ListActivityComponent implements OnInit {
       activitiesSnapShot.forEach((activityData:any) =>{
         this.activities.push({
           id:activityData.payload.doc.id,
-          data:activityData.payload.doc.data()
+          nombre:activityData.payload.doc.data(),
+          fecha:activityData.payload.doc.data(),
+          prediccion:activityData.payload.doc.data()
         });
       })
     })
   }
 
 }
+
+// this.firestoreService.getActivities()
+//       .snapshotChanges()
+//       .subscribe((item) => {
+//         this.activities = [];
+//         item.forEach(element => {
+//           let x = element.payload.toJSON();
+//           x["$key"] = element.key;
+//           this.activities.push(x as Activity);
+//         });
+//       });
+
