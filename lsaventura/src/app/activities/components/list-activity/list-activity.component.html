@@ -1,0 +1,17 @@
+<p>list-activity works!</p>
+<h1>Listado de actividades</h1>
+
+<table>
+    <tr>
+        <th>Nombre</th>
+        <th>Fecha</th>
+        <th>Prediccion</th>
+    </tr>
+    <ng-container *ngIf="activities">
+        <tr *ngFor="let activity of activities">
+            <td>{{activity.nombre}}</td>
+            <td>{{activity.fecha}}</td>
+            <td>{{activity.predccion}}</td>
+        </tr>
+    </ng-container>
+</table>

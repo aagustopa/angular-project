@@ -1,4 +1,4 @@
-export interface Activities{
+export interface Activity{
     nombre:string,
     fecha:Date,
     prediccion:string
