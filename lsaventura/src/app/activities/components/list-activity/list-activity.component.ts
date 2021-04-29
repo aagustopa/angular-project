@@ -1,6 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import { FirestoreService } from '../../services/firestore/firestore.service';
-import {Activity} from '../../models/Activity';
+import { Activity } from '../../models/Activity';
+import { element } from 'protractor';
 
 
 @Component({
@@ -10,23 +11,34 @@ import {Activity} from '../../models/Activity';
 })
 export class ListActivityComponent implements OnInit {
 
-  public activities :Activity [];
+  // public activities :Activity [];
+  public activities: Activity[] = [];
 
-  constructor(private firestoreService:FirestoreService) { }
+  constructor(private firestoreService: FirestoreService) { }
 
   ngOnInit(): void {
-    this.firestoreService.getActivities().subscribe((activitiesSnapShot) =>{
-      this.activities=[];
-      activitiesSnapShot.forEach((activityData:any) =>{
+    console.log('hola');
+    // this.getActivities();
+    this.firestoreService.getActivities().subscribe((activitiesSnapShot) => {
+      this.activities = [];
+      activitiesSnapShot.forEach((activityData: any) => {
         this.activities.push({
-          id:activityData.payload.doc.id,
-          nombre:activityData.payload.doc.data(),
-          fecha:activityData.payload.doc.data(),
-          prediccion:activityData.payload.doc.data()
+          // id:activityData.payload.doc.id,
+          nombre: activityData.payload.doc.data().nombre,
+          fecha: activityData.payload.doc.data().fecha,
+          prediccion: activityData.payload.doc.data().prediccion
         });
       })
     })
   }
+
+  // getActivities(){
+  //   this.firestoreService.getActivities().subscribe(data => {
+  //     data.forEach((element:any)=> {
+  //       console.log(element.payload.doc.data().nombre)
+  //     })
+  //   })
+  // }
 
 }
 

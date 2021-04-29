@@ -1,19 +1,26 @@
 <p>create-activity works!</p>
 <h1>Creación de actividades</h1>
-<!-- <form (submit)="submitForm($event)"> -->
-<form>
+<span *ngIf="submitted && createEmpleado.invalid">TODOS los campos son obligatorios</span>
+<form (submit)="submitForm($event)" [formGroup]="createEmpleado" (ngSubmit)="agregarActividad()">
+    <!-- <form> -->
     <div>
         <label for="nombre">Nombre</label>
-        <input type="text" id="nombre" name="nombre" [(ngModel)]="activity.nombre">
+        <input type="text" id="nombre" name="nombre" formControlName="nombre">
+        <!-- [(ngModel)]="activity.nombre" -->
     </div>
     <br>
     <div>
         <label for="fecha">Fecha</label>
-        <input type="text" id="fecha" name="fecha" [(ngModel)]="activity.fecha">
+        <input type="date" id="fecha" name="fecha" formControlName="fecha">
+        <!-- <input type=" date ">
+        <input type="datetime-local ">
+        <input type="time "> -->
+        <!-- [(ngModel)]="activity.fecha" -->
     </div>
     <div>
-        <label for="prediccion">Prediccion</label>
-        <input type="text" id="prediccion" name="prediccion" [(ngModel)]="activity.prediccion">
+        <label for="prediccion ">Prediccion</label>
+        <input type="text " id="prediccion " name="prediccion" formControlName="prediccion">
+        <!-- [(ngModel)]="activity.prediccion" -->
     </div>
     <br>
     <input type="submit" value="Crear actividad">
