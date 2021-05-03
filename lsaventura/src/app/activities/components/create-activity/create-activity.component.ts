@@ -1,6 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import { FormBuilder, FormControl, FormGroup, Validators } from '@angular/forms';
 import { Router } from '@angular/router';
+import { ToastrService } from 'ngx-toastr';
 import { Activity } from '../../models/Activity';
 import { FirestoreService } from '../../services/firestore/firestore.service';
 
@@ -13,6 +14,7 @@ export class CreateActivityComponent implements OnInit {
 
   createEmpleado: FormGroup;
   submitted = false;
+  loading = false;
 
   public activity: Activity;
 
@@ -26,7 +28,7 @@ export class CreateActivityComponent implements OnInit {
   //   prediccion: new FormControl('', Validators.required)
   // })
 
-  constructor(private firestoreService: FirestoreService, private fb: FormBuilder, private router:Router) {
+  constructor(private firestoreService: FirestoreService, private fb: FormBuilder, private router: Router, private toastr: ToastrService) {
     this.createEmpleado = this.fb.group({
       nombre: ['', Validators.required],
       fecha: ['', Validators.required],
@@ -51,18 +53,25 @@ export class CreateActivityComponent implements OnInit {
       return;
     }
     this.activity = {
+      // id:'',
       nombre: this.createEmpleado.value.nombre,
       fecha: this.createEmpleado.value.fecha,
       prediccion: this.createEmpleado.value.prediccion
       // fechaCreacion:new Date(),
       // fechaActualizacion:new Date()
     }
+    this.loading = true;
     // console.log(empleado);
-    this.firestoreService.createActivity(this.activity).then(() =>{
+    this.firestoreService.createActivity(this.activity).then(() => {
+      this.toastr.success('La actividad fue registrada con exito!', 'Empleado Registrado', {
+        positionClass: 'toast-bottom-right'
+      });
+      this.loading = false;
       console.log('Empleado registrado con exito!');
       this.router.navigate(['/list'])
-    }).catch(error =>{
+    }).catch(error => {
       console.log(error);
+      this.loading = false;
     })
   }
 

@@ -1,1 +1,29 @@
-<h2>¡Componente para actualizar actividades!</h2>
+<h2>¡Componente para actualizar actividades!
+    <div *ngIf="loading" class="spinner-border text-success" style="width: 3rem; height: 3rem;" role="status">
+        <span class="visually-hidden">Loading...</span>
+    </div>
+</h2>
+<form [formGroup]="updateActivity" (ngSubmit)="actualizarActividad()">
+    <!-- <form> -->
+    <div>
+        <label for="nombre">Nombre</label>
+        <input type="text" id="nombre" name="nombre" formControlName="nombre">
+        <!-- [(ngModel)]="activity.nombre" -->
+    </div>
+    <br>
+    <div>
+        <label for="fecha">Fecha</label>
+        <input type="date" id="fecha" name="fecha" formControlName="fecha">
+        <!-- <input type=" date ">
+        <input type="datetime-local ">
+        <input type="time "> -->
+        <!-- [(ngModel)]="activity.fecha" -->
+    </div>
+    <div>
+        <label for="prediccion ">Prediccion</label>
+        <input type="text " id="prediccion " name="prediccion" formControlName="prediccion">
+        <!-- [(ngModel)]="activity.prediccion" -->
+    </div>
+    <br>
+    <input type="submit" value="Actualizar actividad">
+</form>

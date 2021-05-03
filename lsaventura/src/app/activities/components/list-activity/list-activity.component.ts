@@ -2,6 +2,7 @@ import { Component, OnInit } from '@angular/core';
 import { FirestoreService } from '../../services/firestore/firestore.service';
 import { Activity } from '../../models/Activity';
 import { element } from 'protractor';
+import { ToastrService } from 'ngx-toastr';
 
 
 @Component({
@@ -14,7 +15,7 @@ export class ListActivityComponent implements OnInit {
   // public activities :Activity [];
   public activities: Activity[] = [];
 
-  constructor(private firestoreService: FirestoreService) { }
+  constructor(private firestoreService: FirestoreService, private toastr: ToastrService) { }
 
   ngOnInit(): void {
     console.log('hola');
@@ -23,12 +24,23 @@ export class ListActivityComponent implements OnInit {
       this.activities = [];
       activitiesSnapShot.forEach((activityData: any) => {
         this.activities.push({
-          // id:activityData.payload.doc.id,
+          id: activityData.payload.doc.id,
           nombre: activityData.payload.doc.data().nombre,
           fecha: activityData.payload.doc.data().fecha,
           prediccion: activityData.payload.doc.data().prediccion
         });
       })
+    })
+  }
+
+  deleteActivity(id: string) {
+    this.firestoreService.deleteActivity(id).then(() => {
+      console.log('Empleado eliminado con exito');
+      this.toastr.error('La actividad fue eliminada con exito', 'Registro Eliminado', {
+        positionClass: 'toast-bottom-right'
+      })
+    }).catch(error => {
+      console.log(error);
     })
   }
 

@@ -1,5 +1,5 @@
 export interface Activity {
-    // id:string,
+    id?:string,
     nombre: string,
     fecha: Date,
     prediccion: string

@@ -1,5 +1,9 @@
 <p>create-activity works!</p>
-<h1>Creación de actividades</h1>
+<h1>Creación de actividades
+    <div *ngIf="loading" class="spinner-border text-success" style="width: 3rem; height: 3rem;" role="status">
+        <span class="visually-hidden">Loading...</span>
+    </div>
+</h1>
 <span *ngIf="submitted && createEmpleado.invalid">TODOS los campos son obligatorios</span>
 <form (submit)="submitForm($event)" [formGroup]="createEmpleado" (ngSubmit)="agregarActividad()">
     <!-- <form> -->

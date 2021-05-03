@@ -15,7 +15,7 @@ const routes: Routes = [
   { path: 'create', component: CreateActivityComponent },
   { path: 'list', component: ListActivityComponent },
   { path: 'delete', component: DeleteActivityComponent },
-  { path: 'update', component: UpdateActivityComponent },
+  { path: 'update/:id', component: UpdateActivityComponent },
   { path: '**', component: Redirect404Component },
 ];
 
