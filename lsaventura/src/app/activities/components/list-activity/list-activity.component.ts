@@ -18,7 +18,7 @@ export class ListActivityComponent implements OnInit {
   constructor(private firestoreService: FirestoreService, private toastr: ToastrService) { }
 
   ngOnInit(): void {
-    console.log('hola');
+    // console.log('hola');
     // this.getActivities();
     this.firestoreService.getActivities().subscribe((activitiesSnapShot) => {
       this.activities = [];
@@ -33,16 +33,16 @@ export class ListActivityComponent implements OnInit {
     })
   }
 
-  deleteActivity(id: string) {
-    this.firestoreService.deleteActivity(id).then(() => {
-      console.log('Empleado eliminado con exito');
-      this.toastr.error('La actividad fue eliminada con exito', 'Registro Eliminado', {
-        positionClass: 'toast-bottom-right'
-      })
-    }).catch(error => {
-      console.log(error);
-    })
-  }
+  // deleteActivity(id: string) {
+  //   this.firestoreService.deleteActivity(id).then(() => {
+  //     console.log('Empleado eliminado con exito');
+  //     this.toastr.error('La actividad fue eliminada con exito', 'Registro Eliminado', {
+  //       positionClass: 'toast-bottom-right'
+  //     })
+  //   }).catch(error => {
+  //     console.log(error);
+  //   })
+  // }
 
   // getActivities(){
   //   this.firestoreService.getActivities().subscribe(data => {

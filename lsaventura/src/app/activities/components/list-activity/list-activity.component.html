@@ -18,7 +18,7 @@
             <td>{{activity.prediccion}}</td>
             <td>
                 <a [routerLink]="['/update/', activity.id]" role="button">Actualizar</a>
-                <a (click)="deleteActivity(activity.id)" role="button">Eliminar</a>
+                <a [routerLink]="['/delete/', activity.id]" role="button">Eliminar</a>
             </td>
         </tr>
     </ng-container>
