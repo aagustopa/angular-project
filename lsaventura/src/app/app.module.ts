@@ -12,6 +12,7 @@ import { AngularFireModule } from '@angular/fire';
 import { AngularFirestoreModule } from '@angular/fire/firestore';
 import { environment } from '../environments/environment';
 import { ActivitiesModule } from './activities/activities.module';
+import { AuthModule } from './auth/auth.module';
 
 @NgModule({
   declarations: [
@@ -25,9 +26,10 @@ import { ActivitiesModule } from './activities/activities.module';
     AngularFireModule.initializeApp(environment.firebase),
     AngularFirestoreModule,
     ActivitiesModule,
+    AuthModule,
     ToastrModule.forRoot(),
     BrowserAnimationsModule,
-    AngularFireAuthModule
+    AngularFireAuthModule,
   ],
   providers: [],
   bootstrap: [AppComponent]

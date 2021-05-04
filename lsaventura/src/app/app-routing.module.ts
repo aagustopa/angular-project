@@ -8,6 +8,7 @@ import { UpdateActivityComponent } from './activities/components/update-activity
 
 import { Redirect404Component } from '../app/redirect404/redirect404.component';
 import { AppComponent } from './app.component';
+import { LoginUserComponent } from './auth/components/login-user/login-user.component';
 
 const routes: Routes = [
   { path: '', redirectTo: '/', pathMatch: 'full' },
@@ -16,6 +17,7 @@ const routes: Routes = [
   { path: 'list', component: ListActivityComponent },
   { path: 'delete', component: DeleteActivityComponent },
   { path: 'update/:id', component: UpdateActivityComponent },
+  { path: 'login', component: LoginUserComponent },
   { path: '**', component: Redirect404Component },
 ];
 
