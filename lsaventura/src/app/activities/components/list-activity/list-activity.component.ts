@@ -35,12 +35,6 @@ export class ListActivityComponent implements OnInit {
     })
   }
 
-  sendID(id: string): void {
-    console.warn('EVENTO DE DELETE EN EL COMPONENT LIST');
-    console.warn(id);
-    // this.myOutput.emit();
-  }
-
   // deleteActivity(id: string) {
   //   this.firestoreService.deleteActivity(id).then(() => {
   //     console.log('Empleado eliminado con exito');

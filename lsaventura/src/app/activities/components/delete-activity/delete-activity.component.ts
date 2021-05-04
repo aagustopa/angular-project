@@ -10,37 +10,27 @@ import { ToastrService } from 'ngx-toastr';
   styleUrls: ['./delete-activity.component.css']
 })
 export class DeleteActivityComponent implements OnInit {
-
-  id: string;
-
-  public activity: Activity;
-
-  @Input()
-  set activityIdFromParent(id: string){
-    console.log('Llama al componente');
-    // this.firestoreService.deleteActivity(id);
-  }
+  // id: string;
+  // public activity: Activity;
+  @Input() id: string;
 
   constructor(private firestoreService: FirestoreService, private router: Router, private toastr: ToastrService, private aRoute: ActivatedRoute) {
-    this.id = this.aRoute.snapshot.paramMap.get('id');
-    console.log('ID ' + this.id + ' del constructor');
+    // this.id = this.aRoute.snapshot.paramMap.get('id');
   }
 
   ngOnInit(): void {
-    console.log('--- ngOnInit del componente delete ---');
-    console.warn(this.id);
-    this.deleteActivity(this.id);
   }
 
+  // @Input()
   deleteActivity(id: string) {
-  //   this.firestoreService.deleteActivity(id).then(() => {
-  //     console.log('Empleado eliminado con exito');
-  //     this.toastr.error('La actividad fue eliminada con exito', 'Registro Eliminado', {
-  //       positionClass: 'toast-bottom-right'
-  //     })
-  //   }).catch(error => {
-  //     console.log(error);
-  //   })
-  //   this.router.navigate(['/list']);
+    console.log('Eliminar: ' + id);
+    this.firestoreService.deleteActivity(id).then(() => {
+      console.log('Empleado eliminado con exito');
+      this.toastr.error('La actividad fue eliminada con exito', 'Registro Eliminado', {
+        positionClass: 'toast-bottom-right'
+      })
+    }).catch(error => {
+      console.log(error);
+    })
   }
 }
