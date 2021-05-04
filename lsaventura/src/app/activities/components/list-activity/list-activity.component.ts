@@ -1,4 +1,4 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, OnInit, Input } from '@angular/core';
 import { FirestoreService } from '../../services/firestore/firestore.service';
 import { Activity } from '../../models/Activity';
 import { element } from 'protractor';
@@ -11,6 +11,8 @@ import { ToastrService } from 'ngx-toastr';
   styleUrls: ['./list-activity.component.css']
 })
 export class ListActivityComponent implements OnInit {
+
+  @Input() actividad: Activity;
 
   // public activities :Activity [];
   public activities: Activity[] = [];
@@ -31,6 +33,12 @@ export class ListActivityComponent implements OnInit {
         });
       })
     })
+  }
+
+  sendID(id: string): void {
+    console.warn('EVENTO DE DELETE EN EL COMPONENT LIST');
+    console.warn(id);
+    // this.myOutput.emit();
   }
 
   // deleteActivity(id: string) {

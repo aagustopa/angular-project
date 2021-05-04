@@ -1,4 +1,4 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, OnInit, Input } from '@angular/core';
 import { ActivatedRoute, Router } from '@angular/router';
 import { FirestoreService } from '../../services/firestore/firestore.service';
 import { Activity } from '../../models/Activity';
@@ -15,6 +15,12 @@ export class DeleteActivityComponent implements OnInit {
 
   public activity: Activity;
 
+  @Input()
+  set activityIdFromParent(id: string){
+    console.log('Llama al componente');
+    // this.firestoreService.deleteActivity(id);
+  }
+
   constructor(private firestoreService: FirestoreService, private router: Router, private toastr: ToastrService, private aRoute: ActivatedRoute) {
     this.id = this.aRoute.snapshot.paramMap.get('id');
     console.log('ID ' + this.id + ' del constructor');
@@ -27,14 +33,14 @@ export class DeleteActivityComponent implements OnInit {
   }
 
   deleteActivity(id: string) {
-    this.firestoreService.deleteActivity(id).then(() => {
-      console.log('Empleado eliminado con exito');
-      this.toastr.error('La actividad fue eliminada con exito', 'Registro Eliminado', {
-        positionClass: 'toast-bottom-right'
-      })
-    }).catch(error => {
-      console.log(error);
-    })
-    this.router.navigate(['/list']);
+  //   this.firestoreService.deleteActivity(id).then(() => {
+  //     console.log('Empleado eliminado con exito');
+  //     this.toastr.error('La actividad fue eliminada con exito', 'Registro Eliminado', {
+  //       positionClass: 'toast-bottom-right'
+  //     })
+  //   }).catch(error => {
+  //     console.log(error);
+  //   })
+  //   this.router.navigate(['/list']);
   }
 }
