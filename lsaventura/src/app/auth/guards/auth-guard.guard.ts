@@ -10,14 +10,16 @@ export class AuthGuardGuard implements CanActivate {
 
   constructor(private authService$: FirestoreService, private router: Router) { }
 
-  canActivate(
-    route: ActivatedRouteSnapshot,
-    state: RouterStateSnapshot): Observable<boolean | UrlTree> | Promise<boolean | UrlTree> | boolean | UrlTree {
-    
-      // if the user is not logged in we'll send them back to the home page
-      // if(!this.authService$)
-    
-      return true;
+  canActivate(): boolean {
+
+    // if the user is not logged in we'll send them back to the home page
+    console.log(this.authService$.isLogged());
+    if (!this.authService$.isLogged()) {
+      console.log('you are not logged');
+      this.router.navigate(['/login']);
+      return false;
+    }
+    return true;
   }
 
 }

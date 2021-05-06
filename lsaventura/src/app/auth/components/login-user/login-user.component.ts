@@ -49,6 +49,7 @@ export class LoginUserComponent implements OnInit {
       console.log(error);
     });
   }
+
   // crear guard, editar el guard para comprobar si estoy logeado, en ese guard
 
 }

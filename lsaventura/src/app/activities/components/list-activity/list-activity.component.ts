@@ -14,6 +14,7 @@ export class ListActivityComponent implements OnInit {
 
   // public activities :Activity [];
   public activities: Activity[] = [];
+  public isLogged: boolean = false;
 
   constructor(private firestoreService: FirestoreService, private toastr: ToastrService) { }
 

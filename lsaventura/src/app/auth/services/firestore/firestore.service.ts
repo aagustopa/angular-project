@@ -1,6 +1,7 @@
 import { Injectable } from '@angular/core';
 // import { auth } from 'firebase/app';
-import { first } from 'rxjs/operators';
+import { first, map } from 'rxjs/operators';
+import {auth}  from 'firebase/app';
 import { AngularFireAuth } from '@angular/fire/auth';
 import { User } from '../../models/User';
 
@@ -44,5 +45,23 @@ export class FirestoreService {
   }
   getCurrentUser() {
     return this.afAuth.authState.pipe(first()).toPromise();
+  }
+
+  // CORREGIR ESTO 
+  isLogged() {
+    // const user = this.afAuth.currentUser;
+    // if(user){
+    //   return true;
+    // }else{
+    //   return false;
+    // }
+    // return this.afAuth.authState !== null;
+    return this.afAuth.authState.pipe(first());
+
+    // return this.afAuth.authState.pipe(first()).toPromise();
+  }
+
+  isAuth() {
+    return this.afAuth.authState.pipe(map(auth => auth));
   }
 }
