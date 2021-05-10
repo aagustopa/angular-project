@@ -3,6 +3,8 @@ import { FormBuilder, FormControl, FormGroup, Validators } from '@angular/forms'
 import { Router } from '@angular/router';
 import { ToastrService } from 'ngx-toastr';
 import { Activity } from '../../models/Activity';
+import { Weather } from '../../models/Weather';
+import { ActivityService } from '../../services/activity.service';
 import { FirestoreService } from '../../services/firestore/firestore.service';
 
 @Component({
@@ -15,6 +17,8 @@ export class CreateActivityComponent implements OnInit {
   createEmpleado: FormGroup;
   submitted = false;
   loading = false;
+  // public weather: Weather;
+  public weather;
 
   public activity: Activity;
 
@@ -28,7 +32,7 @@ export class CreateActivityComponent implements OnInit {
   //   prediccion: new FormControl('', Validators.required)
   // })
 
-  constructor(private firestoreService: FirestoreService, private fb: FormBuilder, private router: Router, private toastr: ToastrService) {
+  constructor(private firestoreService: FirestoreService, private fb: FormBuilder, private router: Router, private toastr: ToastrService, private weatherService: ActivityService) {
     this.createEmpleado = this.fb.group({
       nombre: ['', Validators.required],
       fecha: ['', Validators.required],
@@ -44,6 +48,19 @@ export class CreateActivityComponent implements OnInit {
   }
 
   ngOnInit(): void {
+    // this.fastGet();
+    try {
+      this.weatherService.getWeatherList().subscribe(weather => {
+        this.weather = weather;
+        console.log(this.weather);
+      });
+    } catch (e) {
+      console.log(`error desde el create component ${e}`);
+    }
+  }
+
+  fastGet(): void {
+    this.weather = this.weatherService.getWeather();
   }
 
   agregarActividad() {
