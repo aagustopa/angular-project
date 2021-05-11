@@ -6,6 +6,7 @@
 <!-- <table> -->
 <table *ngIf="activities.length >0">
     <tr>
+        <th>ID</th>
         <th>Nombre</th>
         <th>Fecha</th>
         <th>Prediccion</th>
@@ -13,12 +14,13 @@
     </tr>
     <ng-container *ngIf="activities">
         <tr *ngFor="let activity of activities">
+            <td>{{activity.id}}</td>
             <td>{{activity.nombre}}</td>
             <td>{{activity.fecha}}</td>
             <td>{{activity.prediccion}}</td>
             <td>
                 <a [routerLink]="['/update/', activity.id]" role="button">Actualizar</a>
-                <a (click)="deleteActivity(activity.id)" role="button">Eliminar</a>
+                <app-delete-activity [id]="activity.id"></app-delete-activity>
             </td>
         </tr>
     </ng-container>
