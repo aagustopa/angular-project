@@ -50,7 +50,7 @@ export class CreateActivityComponent implements OnInit {
   ngOnInit(): void {
     // this.fastGet();
     try {
-      this.weatherService.getWeatherList().subscribe(weather => {
+      this.weatherService.getWeatherList('2021/05/12').subscribe(weather => {
         this.weather = weather;
         console.log(this.weather);
       });
@@ -58,9 +58,7 @@ export class CreateActivityComponent implements OnInit {
       console.log(`error desde el create component ${e}`);
     }
   }
-
-  fastGet(): void {
-    this.weather = this.weatherService.getWeather();
+  fillPrediction(){
   }
 
   agregarActividad() {

@@ -14,21 +14,11 @@ export class ActivityService {
 
   keyBcn = 753692;
 
-  public getWeatherList(): Observable<any> {
-    return this.http.get<any>('api/location/753692/2021/05/11')
+  public getWeatherList(date: any): Observable<any> {
+    return this.http.get<any>(`https://cors-anywhere.herokuapp.com/https://www.metaweather.com/api/location/753692/${date}`)
       .pipe(
         catchError(err => throwError(err))
       );
-  }
-
-  async getWeather(): Promise<any> {
-    try {
-      const response = await fetch(`https://www.metaweather.com/api/location/753692/2021/05/10`);
-      const json = await response.json();
-      return json;
-    } catch (err) {
-      console.error(err);
-    }
   }
 
   async getLogo(key: string): Promise<any> {

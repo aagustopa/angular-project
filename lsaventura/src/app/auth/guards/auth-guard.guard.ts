@@ -14,20 +14,14 @@ export class AuthGuardGuard implements CanActivate {
 
   canActivate() {
 
-    // if the user is not logged in we'll send them back to the home page
-    // console.log(this.authService$.isLogged());
-    // if (!this.authService$.isLogged()) {
-    //   console.log('you are not logged');
-    //   this.router.navigate(['/login']);
-    //   return false;
-    // }
     return this.auth.authState.pipe(
       take(1),
       switchMap(async (authState) => {
         if (authState) {
           return true;
         } else {
-          console.log('No autenticado');
+          // console.log('No autenticado');
+          alert('No autenticado');
           return false;
         }
       })
