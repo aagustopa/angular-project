@@ -6,3 +6,17 @@ h1 {
 .container {
     border: 2px solid white;
 }
+
+label {
+    color: white;
+}
+
+input {
+    color: white;
+    background-color: #000;
+}
+
+input:focus {
+    background-color: #000;
+    color: white;
+}
