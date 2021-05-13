@@ -2,11 +2,11 @@ span {
     margin-left: 30px;
     padding: 16px;
     font-size: 18px;
-    transition: all 1.5s;
+    transition: all 1s;
     cursor: pointer;
 }
 
 span:hover {
-    background-color: #085097;
-    transition: all 1.5s;
+    background-color: #eb362a;
+    transition: all 1s;
 }
