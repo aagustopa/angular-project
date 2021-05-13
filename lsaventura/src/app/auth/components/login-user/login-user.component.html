@@ -1,21 +1,29 @@
-<p>login-user works!</p>
 <h1>Iniciar sesión</h1>
 
 <form [formGroup]="loginForm" (ngSubmit)="logIn()">
-    <div>
-        <label for="email">Email</label>
-        <input type="text" name="email" id="email" formControlName="email">
-    </div>
-    <div>
-        <label for="password">Password</label>
-        <input type="text" name="password" id="password" formControlName="password">
-    </div>
-    <div>
-        <input type="submit" value="Iniciar sesión">
+    <div class="container">
+        <div class="row">
+            <div class="col-6">
+                <div class="form-floating mb-4 mt-5">
+                    <input type="text" class="form-control" id="email" name="email" placeholder="Email" formControlName="email">
+                    <label for="email">Email</label>
+                </div>
+            </div>
+        </div>
+        <div class="row">
+            <div class="col-6">
+                <div class="form-floating mb-4 mt-2">
+                    <input class="form-control" type="text" id="password" name="password" formControlName="password">
+                    <label for="password">Password</label>
+                </div>
+            </div>
+        </div>
+        <div class="row">
+            <div class="col-6">
+                <div class="form-floating mb-5 mt-2">
+                    <button type="submit" class="btn btn-success">Iniciar sesión</button>
+                </div>
+            </div>
+        </div>
     </div>
 </form>
-<!-- 
-email thevdream9@gmail.com
-pwd LSAventura9899 -->
-
-<!-- ale1234 -->

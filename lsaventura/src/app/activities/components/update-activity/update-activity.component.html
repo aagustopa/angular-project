@@ -1,29 +1,32 @@
-<h2>¡Componente para actualizar actividades!
+<h1>¡Componente para actualizar actividades!
     <div *ngIf="loading" class="spinner-border text-success" style="width: 3rem; height: 3rem;" role="status">
         <span class="visually-hidden">Loading...</span>
     </div>
-</h2>
+</h1>
 <form [formGroup]="updateActivity" (ngSubmit)="actualizarActividad()">
-    <!-- <form> -->
-    <div>
-        <label for="nombre">Nombre</label>
-        <input type="text" id="nombre" name="nombre" formControlName="nombre">
-        <!-- [(ngModel)]="activity.nombre" -->
+    <div class="container">
+        <div class="row col-6">
+            <div class="form-floating mb-4 mt-5">
+                <input type="text" class="form-control" id="nombre" name="nombre" placeholder="Nombre" formControlName="nombre">
+                <label for="nombre">Nombre</label>
+            </div>
+        </div>
+        <div class="row col-6">
+            <div class="form-floating mb-4">
+                <input class="form-control form-control" type="date" id="fecha" name="fecha" formControlName="fecha">
+                <label for="fecha">Fecha</label>
+            </div>
+        </div>
+        <div class="row col-6">
+            <div class="form-floating mb-4">
+                <input type="text" class="form-control" id="prediccion" name="prediccion" placeholder="Prediccion" formControlName="prediccion">
+                <label for="prediccion">Prediccion</label>
+            </div>
+        </div>
+        <div class="row col-6">
+            <div class="form-floating mb-5">
+                <button type="submit" class="btn btn-primary">Actualizar actividad</button>
+            </div>
+        </div>
     </div>
-    <br>
-    <div>
-        <label for="fecha">Fecha</label>
-        <input type="date" id="fecha" name="fecha" formControlName="fecha">
-        <!-- <input type=" date ">
-        <input type="datetime-local ">
-        <input type="time "> -->
-        <!-- [(ngModel)]="activity.fecha" -->
-    </div>
-    <div>
-        <label for="prediccion ">Prediccion</label>
-        <input type="text " id="prediccion " name="prediccion" formControlName="prediccion">
-        <!-- [(ngModel)]="activity.prediccion" -->
-    </div>
-    <br>
-    <input type="submit" value="Actualizar actividad">
 </form>

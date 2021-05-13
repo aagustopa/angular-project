@@ -1,26 +1,19 @@
-<p>list-activity works!</p>
 <h1>Listado de actividades</h1>
-
-<!-- <h5 style="margin-top:30px" *ngIf="activities === 0">No hay datos para mostrar</h5> -->
-<!-- <table *ngIf="activities.length >0"> -->
-<!-- <table> -->
 <table *ngIf="activities.length >0">
     <tr>
-        <th>ID</th>
         <th>Nombre</th>
         <th>Fecha</th>
         <th>Prediccion</th>
-        <th style="text-align: center;">Acciones</th>
+        <th>Acciones</th>
     </tr>
     <ng-container *ngIf="activities">
         <tr *ngFor="let activity of activities">
-            <td>{{activity.id}}</td>
             <td>{{activity.nombre}}</td>
             <td>{{activity.fecha}}</td>
             <td>{{activity.prediccion}}</td>
             <td>
-                <a [routerLink]="['/update/', activity.id]" role="button">Actualizar</a>
-                <app-delete-activity [id]="activity.id"></app-delete-activity>
+                <i [routerLink]="['/update/', activity.id]" class="far fa-edit fa-2x text-info mr-2"></i>
+                <app-delete-activity [id]="activity.id" style="cursor: pointer;"></app-delete-activity>
             </td>
         </tr>
     </ng-container>

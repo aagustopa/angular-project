@@ -1,20 +1,52 @@
+h1 {
+    text-align: center;
+    margin-bottom: 25px;
+    color: white;
+}
+
+table {
+    width: 75%;
+    height: 30vh;
+    align-items: center;
+    justify-content: center;
+    right: 0;
+    left: 0;
+    top: 0;
+    bottom: 0;
+    margin: auto;
+    transition: all 3s;
+    color: white;
+}
+
+table:hover {
+    box-shadow: 4px 6px 20px 10px rgba(71, 71, 71, 1);
+    transition: all 3s;
+}
+
 tr,
 th {
     border: 1px solid #000;
-}
-
-td {
-    border: 1px solid #000;
-}
-
-a {
-    cursor: pointer;
-    margin: 0px 5px 0px 5px;
+    padding: 10px;
     text-align: center;
-    text-decoration: none;
+    font-size: 18px;
+    border-bottom: 1px solid white;
+    border-right: 1px solid white;
+    border-top: 1px solid white;
+    border-left: 1px solid white;
 }
 
-a:hover {
-    background-color: hsl(210, 100%, 16%);
+tr>td {
+    border: 1px solid #000;
+    padding: 15px;
+    font-size: 15px;
+    border-bottom: 1px solid white;
+}
+
+td:hover {
+    background-color: #000000;
     color: white;
+}
+
+i {
+    cursor: pointer;
 }

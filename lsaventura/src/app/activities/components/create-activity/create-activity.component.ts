@@ -3,7 +3,6 @@ import { FormBuilder, FormControl, FormGroup, Validators } from '@angular/forms'
 import { Router } from '@angular/router';
 import { ToastrService } from 'ngx-toastr';
 import { Activity } from '../../models/Activity';
-import { Weather } from '../../models/Weather';
 import { ActivityService } from '../../services/activity.service';
 import { FirestoreService } from '../../services/firestore/firestore.service';
 
@@ -17,20 +16,10 @@ export class CreateActivityComponent implements OnInit {
   createEmpleado: FormGroup;
   submitted = false;
   loading = false;
-  // public weather: Weather;
   public weather;
+  imagePath;
 
   public activity: Activity;
-
-  // SHIT CODE
-  // public data;
-  // public documentId = null;
-  // public currentStatus = 1;
-  // public newActivityForm = new FormGroup({
-  //   nombre: new FormControl('', Validators.required),
-  //   fecha: new FormControl('', Validators.required),
-  //   prediccion: new FormControl('', Validators.required)
-  // })
 
   constructor(private firestoreService: FirestoreService, private fb: FormBuilder, private router: Router, private toastr: ToastrService, private weatherService: ActivityService) {
     this.createEmpleado = this.fb.group({
@@ -38,27 +27,33 @@ export class CreateActivityComponent implements OnInit {
       fecha: ['', Validators.required],
       prediccion: ['', Validators.required]
     })
-
-    // SHIT CODE
-    // this.newActivityForm.setValue({
-    //   nombre: '',
-    //   fecha: '',
-    //   prediccion: ''
-    // });
   }
 
   ngOnInit(): void {
-    // this.fastGet();
+  }
+
+  getLogo() {
     try {
-      this.weatherService.getWeatherList('2021/05/12').subscribe(weather => {
-        this.weather = weather;
-        console.log(this.weather);
+      this.weatherService.getLogo('lc').subscribe(imagePath => {
+        this.imagePath = imagePath;
+        console.log('logo del tiempo' + this.imagePath);
+      });
+    } catch (e) {
+      console.log(`error desde el getlogo ${e}`);
+    }
+  }
+  fillPrediction(fecha) {
+    fecha = this.activity.fecha;
+    const convertToString = fecha.toString();
+    const newDate = convertToString.replace(/-/g, '/');
+    try {
+      this.weatherService.getWeatherList(newDate).subscribe(weather => {
+        this.weather = weather[0].weather_state_name;
+        alert(`La prevision segun la api es la siguiente, tiempo: ${this.weather}`);
       });
     } catch (e) {
       console.log(`error desde el create component ${e}`);
     }
-  }
-  fillPrediction(){
   }
 
   agregarActividad() {
@@ -68,46 +63,22 @@ export class CreateActivityComponent implements OnInit {
       return;
     }
     this.activity = {
-      // id:'',
       nombre: this.createEmpleado.value.nombre,
       fecha: this.createEmpleado.value.fecha,
       prediccion: this.createEmpleado.value.prediccion
-      // fechaCreacion:new Date(),
-      // fechaActualizacion:new Date()
     }
+    this.fillPrediction(this.activity.fecha);
     this.loading = true;
-    // console.log(empleado);
     this.firestoreService.createActivity(this.activity).then(() => {
       this.toastr.success('La actividad fue registrada con exito!', 'Empleado Registrado', {
         positionClass: 'toast-bottom-right'
       });
       this.loading = false;
-      console.log('Empleado registrado con exito!');
+      console.log('Actividad registrado con exito!');
       this.router.navigate(['/list'])
     }).catch(error => {
       console.log(error);
       this.loading = false;
     })
   }
-
-  // comprobando el event del formulario
-  submitForm(event) {
-    console.log('HOLA');
-  }
-
-  // CODIGO DE MIERRRRRDA DEL TUTORIAL DE MEDIUM
-  // newActivity(event) {
-  //   event.preventDefault();
-  //   this.firestoreService.createActivity(this.data).then(() => {
-  //     console.log('Actividad creada exitósamente!');
-  //     this.newActivityForm.setValue({
-  //       nombre: '',
-  //       fecha: '',
-  //       prediccion: ''
-  //     });
-  //   }, (error) => {
-  //     console.error(error);
-  //   });
-  // }
-
 }

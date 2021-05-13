@@ -1,0 +1,23 @@
+h1 {
+    text-align: center;
+    color: white;
+    margin-bottom: 20px;
+}
+
+.container {
+    border: 3px solid white;
+}
+
+label {
+    color: white;
+}
+
+input {
+    color: white;
+    background-color: #000;
+}
+
+input:focus {
+    background-color: #000;
+    color: white;
+}

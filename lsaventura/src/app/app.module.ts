@@ -3,6 +3,7 @@ import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 import { BrowserModule } from '@angular/platform-browser';
 import { ToastrModule } from 'ngx-toastr';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
+import { FontAwesomeModule, FaIconLibrary  } from '@fortawesome/angular-fontawesome';
 
 import { AppRoutingModule } from './app-routing.module';
 import { AppComponent } from './app.component';
@@ -29,6 +30,7 @@ import { HttpClientModule } from '@angular/common/http';
     ActivitiesModule,
     AuthModule,
     ToastrModule.forRoot(),
+    FontAwesomeModule,
     BrowserAnimationsModule,
     AngularFireAuthModule,
     HttpClientModule

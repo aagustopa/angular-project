@@ -4,13 +4,14 @@ import { ActivatedRoute, Router } from '@angular/router';
 import { ToastrService } from 'ngx-toastr';
 import { Activity } from '../../models/Activity';
 import { FirestoreService } from '../../services/firestore/firestore.service';
+import { CanComponentLeave } from '../../guards/update-guard.guard'
 
 @Component({
   selector: 'app-update-activity',
   templateUrl: './update-activity.component.html',
   styleUrls: ['./update-activity.component.css']
 })
-export class UpdateActivityComponent implements OnInit {
+export class UpdateActivityComponent implements OnInit, CanComponentLeave {
 
   updateActivity: FormGroup;
   submitted = false;
@@ -77,6 +78,13 @@ export class UpdateActivityComponent implements OnInit {
         prediccion: data.payload.data()['prediccion']
       })
     })
+  }
+
+  canLeave(): boolean {
+    if (this.updateActivity.dirty && this.submitted===false) {
+      return window.confirm('You have some unsaved changes. Save it before leaving!');
+    }
+    return true;
   }
 
 }

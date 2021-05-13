@@ -3,6 +3,7 @@ import { FirestoreService } from '../../services/firestore/firestore.service';
 import { Activity } from '../../models/Activity';
 import { element } from 'protractor';
 import { ToastrService } from 'ngx-toastr';
+import { faCoffee } from '@fortawesome/free-solid-svg-icons';
 
 
 @Component({
@@ -14,15 +15,13 @@ export class ListActivityComponent implements OnInit {
 
   @Input() actividad: Activity;
 
-  // public activities :Activity [];
   public activities: Activity[] = [];
   public isLogged: boolean = false;
-
+  faCoffee = faCoffee;
+  
   constructor(private firestoreService: FirestoreService, private toastr: ToastrService) { }
 
   ngOnInit(): void {
-    // console.log('hola');
-    // this.getActivities();
     this.firestoreService.getActivities().subscribe((activitiesSnapShot) => {
       this.activities = [];
       activitiesSnapShot.forEach((activityData: any) => {
@@ -36,35 +35,9 @@ export class ListActivityComponent implements OnInit {
     })
   }
 
-  // deleteActivity(id: string) {
-  //   this.firestoreService.deleteActivity(id).then(() => {
-  //     console.log('Empleado eliminado con exito');
-  //     this.toastr.error('La actividad fue eliminada con exito', 'Registro Eliminado', {
-  //       positionClass: 'toast-bottom-right'
-  //     })
-  //   }).catch(error => {
-  //     console.log(error);
-  //   })
-  // }
-
-  // getActivities(){
-  //   this.firestoreService.getActivities().subscribe(data => {
-  //     data.forEach((element:any)=> {
-  //       console.log(element.payload.doc.data().nombre)
-  //     })
-  //   })
-  // }
-
+  updateAct(){
+    console.log('Actualizando');
+  }
 }
 
-// this.firestoreService.getActivities()
-//       .snapshotChanges()
-//       .subscribe((item) => {
-//         this.activities = [];
-//         item.forEach(element => {
-//           let x = element.payload.toJSON();
-//           x["$key"] = element.key;
-//           this.activities.push(x as Activity);
-//         });
-//       });
 

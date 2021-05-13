@@ -10,12 +10,9 @@ import { ToastrService } from 'ngx-toastr';
   styleUrls: ['./delete-activity.component.css']
 })
 export class DeleteActivityComponent implements OnInit {
-  // id: string;
-  // public activity: Activity;
   @Input() id: string;
 
   constructor(private firestoreService: FirestoreService, private router: Router, private toastr: ToastrService, private aRoute: ActivatedRoute) {
-    // this.id = this.aRoute.snapshot.paramMap.get('id');
   }
 
   ngOnInit(): void {

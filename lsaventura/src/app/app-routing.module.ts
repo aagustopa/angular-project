@@ -10,14 +10,15 @@ import { Redirect404Component } from '../app/redirect404/redirect404.component';
 import { AppComponent } from './app.component';
 import { LoginUserComponent } from './auth/components/login-user/login-user.component';
 import { AuthGuardGuard } from './auth/guards/auth-guard.guard';
+import { UpdateGuardGuard } from './activities/guards/update-guard.guard';
 
 const routes: Routes = [
-  { path: '', redirectTo: '/', pathMatch: 'full' },
-  { path: '', component: AppComponent },
-  { path: 'create', component: CreateActivityComponent,  canActivate: [AuthGuardGuard] },
-  { path: 'list', component: ListActivityComponent,  canActivate: [AuthGuardGuard] },
-  { path: 'delete', component: DeleteActivityComponent,  canActivate: [AuthGuardGuard] },
-  { path: 'update/:id', component: UpdateActivityComponent,  canActivate: [AuthGuardGuard]},
+  { path: '', redirectTo: '/list', pathMatch: 'full' },
+  // { path: '', component: AppComponent },
+  { path: 'create', component: CreateActivityComponent, canActivate: [AuthGuardGuard] },
+  { path: 'list', component: ListActivityComponent, canActivate: [AuthGuardGuard] },
+  { path: 'delete', component: DeleteActivityComponent, canActivate: [AuthGuardGuard] },
+  { path: 'update/:id', component: UpdateActivityComponent, canActivate: [AuthGuardGuard], canDeactivate: [UpdateGuardGuard] },
   { path: 'login', component: LoginUserComponent },
   { path: '**', component: Redirect404Component },
 ];
